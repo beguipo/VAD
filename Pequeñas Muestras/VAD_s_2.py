@@ -51,7 +51,7 @@ def frame_generator(frame_duration_ms, audio, sample_rate):
 
     Yields Frames of the requested duration.
     """
-    n = int(sample_rate * (frame_duration_ms / 1000.0) * 2)
+    n = int(sample_rate * (frame_duration_ms / 1000.0)*2)
     offset = 0
     timestamp = 0.0
     duration = (float(n) / sample_rate) / 2.0

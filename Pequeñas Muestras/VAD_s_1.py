@@ -11,7 +11,7 @@ def grabar_audio():
     duracion = 5
 
     # Grabar audio desde el micrófono
-    audio = sd.rec(int(duracion * 44100), samplerate=44100, channels=1)
+    audio = sd.rec(int(duracion * 32000), samplerate=32000, channels=1)
 
     # Esperar a que la grabación termine
     sd.wait()

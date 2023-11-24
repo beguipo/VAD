@@ -24,3 +24,9 @@ Es este script integramos la grabacion cunado la media del buffer sea mayor que 
 
 ### VAD_s_1.py
 Scrip que graba cada 5s y lo almacena en la carptea de audios
+
+### VAD_s_2.py
+Script extraido de github: https://github.com/wiseman/py-webrtcvad/blob/master/example.py
+Se ejecuta pasandole el nivel de agressividad (1-3), siendo 3 el máximo y el path del archivo que quieres analizar. COn las pruebas que he hecho el 3 es el mejopr modo ya que coje exctamente donde hay voz. Otra cosa que hace es reducir la velocidad de la grabacion que nos devuelve de manera que nos escuchamos mas graves y lentos, aunque solo escuchamos la parte de voz, las demas partes las elimina.
+
+Ya no se oye lento, era por una diferencia en la frecuencia de muestreo del microfono y en la de lectura.
