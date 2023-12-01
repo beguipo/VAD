@@ -1,7 +1,7 @@
 import speech_recognition as sr
 
 # Ruta del archivo de audio
-audio_file = "chunk-01.wav"
+audio_file = "RTGSR/noisy_file.wav"
 
 # Crear un objeto de reconocimiento de voz
 recognizer = sr.Recognizer()
