@@ -50,10 +50,10 @@ Script de ronocimiento de voz de manera constante en timepo real que nos hace la
 ### TR
 Basandome en una primera grabacion de x segundos y luego llamar a la API
 
-### TR_1.py
+#### TR_1.py
 Nos graba un fragmento de audio, lo trasncribe y ejecuta una funcion si se detecta cierta palabra en la transcripción. El objetivo es hacer tipo alexa de manera que si detecta cierta palabra (un nombre o algo) podemos ejecutar una funcion y sino descartar toda la trasncripción o almacenarla en un sition diferente.
 
-### TR_2.py (porcesos o hilos)
+#### TR_2.py (porcesos o hilos)
 Basandonos en el programa anterior programamos un hilo o proceso para que grabe segmentos de audio de manera recurrente y otro porceso o hilo se encarga de in haciendo las trasncripciones de los fragmentos de audio. (Mejor funcionamiento en hilos)
 
 
