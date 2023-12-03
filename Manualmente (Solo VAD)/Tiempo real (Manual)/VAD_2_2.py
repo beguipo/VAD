@@ -7,14 +7,20 @@ import webrtcvad
 
 import collections #Para el buffer
 import threading #Para el hilo de comprobacion del buffer
+import time #Para dormir el hilo
+
+import wave #Para guardar el audio
 
 
 #Configuración del buffer 
 BUFFER_SIZE = 5  # Número de resultados de detección de voz a tener en cuenta
-VOICE_THRESHOLD =0.9   # Umbral de voz para comenzar a grabar
+VOICE_THRESHOLD =0.8   # Umbral de voz para comenzar a grabar
 
 buffer = collections.deque(maxlen=BUFFER_SIZE)
 buffer.extend([0]*BUFFER_SIZE)
+
+global numero
+numero = 0
 
 
 
@@ -48,6 +54,8 @@ def main():
 
     print("Escuchando...")
 
+    global audio_data
+
     # Iniciar el hilo de comprobación del buffer
     threading.Thread(target=check_buffer, daemon=True).start()
 
@@ -58,17 +66,36 @@ def main():
 
         # Verificar si hay voz
         if is_voice(audio_data):
+            #print(1)
             buffer.append(1)
         else:
+            #print(0)
             buffer.append(0)
 
 
 #Hilo de comprobacion del buffer
 def check_buffer():
+    global numero
+
     while True:
         mean = sum(buffer) / len(buffer)
         if mean > VOICE_THRESHOLD:
-            print("1", end="", flush=True)  # Escribir "1" sin salto de línea
+            print("Grabando", end="", flush=True)  # Escribir "Grabando" sin salto de línea
+            audio_data = sd.rec(int(fs * 2), samplerate=fs, channels=1, dtype=np.int16)
+            sd.wait()
+
+            # Guardar el audio en un archivo .wav
+            nombre = "seq/output" + str(numero) + ".wav"
+            numero = numero + 1 
+
+            with wave.open(nombre, 'w') as wav_file:
+                wav_file.setnchannels(1)
+                wav_file.setsampwidth(2)  # 2 bytes (16 bits) de ancho de muestra
+                wav_file.setframerate(fs)
+                wav_file.writeframes(audio_data.tobytes())
+            print("Fin tramo", end="", flush=True)  # Escribir "Fin tramo" sin salto de línea
+        else:
+            time.sleep(0.2) #Esperar 0.4 segundos
 
             
 
@@ -77,5 +104,3 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         print("\nPrograma finalizado.")
-
-        
