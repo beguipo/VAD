@@ -2,3 +2,13 @@ Google speech to text:
 
     https://cloud.google.com/speech-to-text/docs/samples/speech-transcribe-streaming-mic?hl=en#speech_transcribe_streaming_mic-python 
 
+Todos los trasncriptores de audio:
+
+    https://deepgram.com/learn/best-python-audio-libraries-for-speech-recognition-in-2023
+
+
+Whisper:
+
+    https://github.com/openai/whisper
+
+
