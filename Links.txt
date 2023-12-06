@@ -11,4 +11,8 @@ Whisper:
 
     https://github.com/openai/whisper
 
+Hoja de cálculo tiempos:
+
+    https://docs.google.com/spreadsheets/d/1vB31lQvFp0SYcZTqOZTFueMcIyuDV9mwIzioI_EgcLQ/edit?hl=es&pli=1#gid=0
+
 

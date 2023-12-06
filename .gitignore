@@ -1,5 +1,4 @@
-*.wav
+
 *.txt
 VAD
 seq/*
-*.mp3

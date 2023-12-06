@@ -1,6 +1,6 @@
 
 % Leer el archivo de audio
-[original_audio, fs] = audioread('recording.wav');
+[original_audio, fs] = audioread('/home/berri/Desktop/VAD/Muestras/Sin_Ruido/Velocidad.wav');
 
 % Generar ruido
 ruido = 0.1 * randn(size(original_audio)); % ajusta la amplitud del ruido según sea necesario
@@ -9,7 +9,7 @@ ruido = 0.1 * randn(size(original_audio)); % ajusta la amplitud del ruido según
 audio_con_ruido = original_audio + ruido;
 
 % Guardar el archivo con ruido
-audiowrite('noisy_file.wav', audio_con_ruido, fs);
+audiowrite('/home/berri/Desktop/VAD/Muestras/Con_Ruido/Velocidad.wav', audio_con_ruido, fs);
 
 % Graficar ambas señales
 tiempo_original = (0:length(original_audio)-1) / fs;
