@@ -8,7 +8,7 @@ def transcribir_archivos_mp3(directorio_entrada):
     archivos_mp3 = [archivo for archivo in os.listdir(directorio_entrada) if archivo.endswith(".mp3")]
 
     # Iniciar el motor de Whisper
-    modelo_whisper = whisper.load_model("small")
+    modelo_whisper = whisper.load_model("large-v3")
 
     # Iterar sobre cada archivo .mp3
     for archivo_mp3 in archivos_mp3:
