@@ -16,3 +16,6 @@ Hoja de cálculo tiempos:
     https://docs.google.com/spreadsheets/d/1vB31lQvFp0SYcZTqOZTFueMcIyuDV9mwIzioI_EgcLQ/edit?hl=es&pli=1#gid=0
 
 
+Links de modelos de VOSK:
+
+    https://alphacephei.com/vosk/models
