@@ -70,7 +70,7 @@ def guardar_resultados_csv(resultados, nombre_archivo_csv):
             escritor_csv.writerow([nombre_archivo, tiempo_transcripcion, transcripcion])
 
 if __name__ == "__main__":
-    directorio_entrada_audio = "/home/berri/Desktop/VAD/Muestras/Con_Ruido/"  # Reemplaza con la ruta de tu directorio
+    directorio_entrada_audio = "/home/berri/Desktop/VAD/Muestras/Sin_Ruido/"  # Reemplaza con la ruta de tu directorio
 
     resultados_transcripcion = transcribir_archivos_mp3(directorio_entrada_audio)
 

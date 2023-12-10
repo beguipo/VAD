@@ -4,3 +4,4 @@ VAD
 seq/*
 Vosk/vosk-model-es-0.42
 Vosk/vosk-model-small-es-0.42
+Vosk/resultados.csv
