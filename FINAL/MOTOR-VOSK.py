@@ -8,14 +8,15 @@ from watchdog.events import FileSystemEventHandler
 # Directorios
 import os
 
-# Importar el motor de Whisper
-import whisper
+# Importamos el motor de Vosk
+import vosk
 
 # Hilos
 import threading
 
 # Tratamiento de .wav
 import wave
+
 
 
 #--------------------------------------------- Funciones --------------------------------------------------#
@@ -32,7 +33,7 @@ def main(semaphore):
     while True:
         semaphore.wait()
         with sr.Microphone() as source:
-            #print("Di algo...")
+            print("Di algo...")
             recognizer.adjust_for_ambient_noise(source)
             audio = recognizer.listen(source)
 
@@ -73,20 +74,30 @@ def monitor_directory(directory_path, file_created_event):
 
 def Whisper_ngin(semaphore,rec_semaphore):
 
-    model = whisper.load_model("large-v3") #Precargamos el modelo.+
+    modelo = vosk.Model("Vosk/vosk-model-es-0.42")
+    reconocedor = vosk.KaldiRecognizer(modelo, 44100)
     #print("Modelo cargado")
     rec_semaphore.set()
 
     while True: 
-        #print("while tur whisper")
+        #print("while true whisper")
         semaphore.wait()
 
         #print('Entra a traducir')
-        trasncripcion = model.transcribe(directorio_entrada_audio + "audio.wav")
+        with open(directorio_salida_audio + "audio.wav", 'rb') as audio_file:
+            audio_data = audio_file.read()
+
+        #inicio_transcripcion = time.time()
+        reconocedor.AcceptWaveform(audio_data)
+        resultado = reconocedor.FinalResult()
+        #fin_transcripcion = time.time()
+
+
         eliminar_archivos_wav(directorio_salida_audio)
+        
         #print(trasncripcion)
         with open("transcripcion.txt", "a") as file:
-            file.write(trasncripcion['text'] + "\n")
+            file.write(resultado + "\n")
 
         semaphore.clear()
         rec_semaphore.set()
@@ -95,8 +106,9 @@ def Whisper_ngin(semaphore,rec_semaphore):
 if __name__ == "__main__":
 
 
-    directorio_entrada_audio = "SUPREMO/tmp/"
-    directorio_salida_audio = "SUPREMO/tmp/"
+
+    directorio_entrada_audio = "FINAL/tmp/"
+    directorio_salida_audio = "FINAL/tmp/"
     recognizer = sr.Recognizer()
 
     # Semaforo generacion de archivos
@@ -111,5 +123,3 @@ if __name__ == "__main__":
     whisperThread.start()
 
     main(semaphore2)
-
-    
