@@ -17,6 +17,8 @@ import threading
 # Tratamiento de .wav
 import wave
 
+import json
+
 
 
 #--------------------------------------------- Funciones --------------------------------------------------#
@@ -90,6 +92,7 @@ def Whisper_ngin(semaphore,rec_semaphore):
         #inicio_transcripcion = time.time()
         reconocedor.AcceptWaveform(audio_data)
         resultado = reconocedor.FinalResult()
+        resultado = json.loads(resultado)
         #fin_transcripcion = time.time()
 
 
@@ -97,7 +100,7 @@ def Whisper_ngin(semaphore,rec_semaphore):
         
         #print(trasncripcion)
         with open("transcripcion.txt", "a") as file:
-            file.write(resultado + "\n")
+            file.write(resultado["text"] + "\n")
 
         semaphore.clear()
         rec_semaphore.set()
